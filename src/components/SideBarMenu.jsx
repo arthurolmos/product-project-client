@@ -100,9 +100,7 @@ export default function SideBarMenu () {
       case 'New Product':
         history.push('/Products/New')
         break
-      case 'New Tag':
-        history.push('/Tags/New')
-        break
+
       default:
     }
   }
@@ -147,7 +145,7 @@ export default function SideBarMenu () {
         </div>
 
         <List>
-          {['Products', 'New Product', 'New Tag'].map((text, index) => (
+          {['Products', 'New Product'].map((text, index) => (
             <ListItem button key={text} onClick={(event) => { handleMenuButton(text) }}>
               <ListItemIcon>{index > 1 ? <LocalOfferIcon /> : <ShoppingCartIcon />}</ListItemIcon>
               <ListItemText primary={text} />

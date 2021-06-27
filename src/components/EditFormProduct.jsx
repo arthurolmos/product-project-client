@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function FormProduct ({ onSubmitNewProduct }) {
+export default function EditFormProduct ({ product }) {
   const classes = useStyles()
   const [tags, setTags] = useState({})
   const [imgUrl, setImgUrl] = useState('')
@@ -59,7 +60,7 @@ export default function FormProduct ({ onSubmitNewProduct }) {
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
-    onSubmitNewProduct({ name, tags, imgUrl, price, description })
+    // onSubmitNewProduct({ name, tags, imgUrl, price, description })
   }
 
   function onChangeTags (event, value) {
@@ -106,7 +107,6 @@ export default function FormProduct ({ onSubmitNewProduct }) {
     }
 
     tagsArray.push(obj)
-    console.log(tagsArray)
   }
 
   return (
@@ -132,8 +132,8 @@ export default function FormProduct ({ onSubmitNewProduct }) {
                 required
                 fullWidth
                 id='name'
-                label='Name'
                 autoFocus
+                defaultValue={product. }
                 onChange={onChangeName}
               />
             </Grid>
@@ -142,10 +142,6 @@ export default function FormProduct ({ onSubmitNewProduct }) {
               <TextField
                 variant='outlined'
                 fullWidth
-                id='price'
-                label='Price'
-                name='price'
-                autoComplete='price'
                 onChange={onChangePrice}
               />
             </Grid>
@@ -154,9 +150,7 @@ export default function FormProduct ({ onSubmitNewProduct }) {
               <TextField
                 variant='outlined'
                 fullWidth
-                name='description'
                 multiline
-                label='Description'
                 rows={7}
                 onChange={onChangeDescription}
               />
@@ -181,7 +175,6 @@ export default function FormProduct ({ onSubmitNewProduct }) {
               />
             </Grid>
             <Grid item xs={3}>
-
               <Button
                 variant='contained'
                 color='secondary'
@@ -219,7 +212,6 @@ export default function FormProduct ({ onSubmitNewProduct }) {
                   </Button>
                 </DialogActions>
               </Dialog>
-
             </Grid>
           </Grid>
           <Button

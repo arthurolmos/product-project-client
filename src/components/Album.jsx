@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Copyright from '../components/Copyright'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -45,8 +46,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Album ({ products, deleteProduct }) {
   const cards = products
-
   const classes = useStyles()
+  const history = useHistory()
+
+  function handleViewClick (card) {
+    history.push(`/Products/${card.id}`)
+  }
   return (
     <>
       <CssBaseline />
@@ -69,7 +74,7 @@ export default function Album ({ products, deleteProduct }) {
                     <Typography>{card.description}</Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size='small' color='primary'>
+                    <Button size='small' color='primary' onClick={(event) => { handleViewClick(card) }}>
                       View
                     </Button>
                     <Button size='small' color='primary' onClick={(event) => { deleteProduct(card) }}>
