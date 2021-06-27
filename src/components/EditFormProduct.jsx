@@ -41,14 +41,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EditFormProduct ({ product }) {
   const classes = useStyles()
-  const [tags, setTags] = useState({})
-  const [imgUrl, setImgUrl] = useState('')
-  const [description, setDescription] = useState('')
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState('')
-  const [tagsArray] = useState([])
-  const [newTag, setNewTag] = useState('')
-  const [open, setOpen] = React.useState(false)
+  const [tags, setTags] = useState(product && product.tags ? product.tags : [])
+  const [imgUrl, setImgUrl] = useState(product && product.imgUrl ? product.imgUrl : '')
+  const [description, setDescription] = useState(product && product.description ? product.description : '')
+  const [name, setName] = useState(product && product.name ? product.name : '')
+  const [price, setPrice] = useState(product && product.price ? product.price.toString() : '')
+  const [tagsArray] = useState(product && product.tagsArray ? product.tagsArray : [])
+  const [newTag, setNewTag] = useState(product && product.newTag ? product.newTag : '')
+  const [open, setOpen] = useState(false)
 
   const handleClickOpen = () => {
     setOpen(true)
