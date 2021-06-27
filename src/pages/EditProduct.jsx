@@ -4,11 +4,14 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import api from '../services/api'
 export default function EditProduct () {
-  const [product, setProduct] = useState({})
+  
+  const [product, setProduct] = useState(null)
   const params = useParams()
+  
   useEffect(() => {
     if (params.id !== undefined) { loadNote() }
   }, [])
+  
   function loadNote () {
     // Make a request for a user with a given ID
     api.get(`/Products/${params.id}`)
