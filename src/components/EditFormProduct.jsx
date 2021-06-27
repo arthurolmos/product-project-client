@@ -133,7 +133,6 @@ export default function EditFormProduct ({ product }) {
                 fullWidth
                 id='name'
                 autoFocus
-                defaultValue={product. }
                 onChange={onChangeName}
               />
             </Grid>
