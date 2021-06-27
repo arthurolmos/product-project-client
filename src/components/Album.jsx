@@ -9,19 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import Link from '@material-ui/core/Link'
-import FormDialog from './FormDialog'
-function Copyright () {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  )
-}
+import Copyright from '../components/Copyright'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -55,55 +43,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Album ({ products }) {
-  console.log(products)
+export default function Album ({ products, deleteProduct }) {
   const cards = products
 
   const classes = useStyles()
-
   return (
     <>
       <CssBaseline />
 
       <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth='sm'>
-            <Typography
-              component='h1'
-              variant='h2'
-              align='center'
-              color='textPrimary'
-              gutterBottom
-            >
-              Album layout
-            </Typography>
-            <Typography
-              variant='h5'
-              align='center'
-              color='textSecondary'
-              paragraph
-            >
-              Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely.
-            </Typography>
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify='center'>
-                <Grid item>
-                  <FormDialog />
-                </Grid>
-                <Grid item>
-                  <Button variant='outlined' color='primary'>
-                    Secondary action
-                  </Button>
-                </Grid>
-              </Grid>
-            </div>
-          </Container>
-        </div>
         <Container className={classes.cardGrid} maxWidth='md'>
-          {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card, index) => (
               <Grid item key={index} xs={12} sm={6} md={4}>
@@ -117,16 +66,14 @@ export default function Album ({ products }) {
                     <Typography gutterBottom variant='h5' component='h2'>
                       {card.name}
                     </Typography>
-                    <Typography>
-                      {card.description}
-                    </Typography>
+                    <Typography>{card.description}</Typography>
                   </CardContent>
                   <CardActions>
                     <Button size='small' color='primary'>
                       View
                     </Button>
-                    <Button size='small' color='primary'>
-                      Edit
+                    <Button size='small' color='primary' onClick={(event) => { deleteProduct(card) }}>
+                      Delete
                     </Button>
                   </CardActions>
                 </Card>
@@ -135,22 +82,9 @@ export default function Album ({ products }) {
           </Grid>
         </Container>
       </main>
-      {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant='h6' align='center' gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant='subtitle1'
-          align='center'
-          color='textSecondary'
-          component='p'
-        >
-          Something here to give the footer a purpose!
-        </Typography>
         <Copyright />
       </footer>
-      {/* End footer */}
     </>
   )
 }

@@ -2,6 +2,7 @@ import SideBarMenu from '../components/SideBarMenu'
 import FormProduct from '../components/FormProduct'
 import api from '../services/api'
 import { useHistory } from 'react-router-dom'
+
 export default function NewProduct () {
   const history = useHistory()
   function onSubmitNewProduct (content) {
@@ -25,6 +26,7 @@ export default function NewProduct () {
       .catch(function (error) {
         console.log(error.response)
         console.log(error.request)
+        console.log(error.request.response) // esse mostra a msg do core
         console.log(error.message)
       })
   }

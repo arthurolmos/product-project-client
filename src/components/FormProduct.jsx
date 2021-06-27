@@ -105,6 +105,9 @@ export default function FormProduct ({ onSubmitNewProduct }) {
         <Typography component='h1' variant='h5'>
           New Product
         </Typography>
+        <Grid item xs={12}>
+          <input type='file' onChange={onChangeFile} />
+        </Grid>
         <form className={classes.form} onSubmit={onSubmitHandler}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
@@ -164,9 +167,6 @@ export default function FormProduct ({ onSubmitNewProduct }) {
               />
             </Grid>
 
-            <Grid item xs={12}>
-              <input type='file' onChange={onChangeFile} />
-            </Grid>
           </Grid>
           <Button
             type='submit'
@@ -177,7 +177,6 @@ export default function FormProduct ({ onSubmitNewProduct }) {
           >
             New Product
           </Button>
-
         </form>
       </div>
       <Box mt={5}>

@@ -14,6 +14,7 @@ export default function Products () {
     api.get('/Products')
       .then(function (response) {
         // handle success
+        console.log(response)
         setProducts(response.data)
       })
       .catch(function (error) {
@@ -21,10 +22,26 @@ export default function Products () {
         console.log(error)
       })
   }
+
+  function deleteProduct (card) {
+    console.log(card)
+    api.delete(`/Products/${card.id}`)
+      .then(function (response) {
+      // handle success
+        console.log(response)
+        window.location.reload()
+      })
+      .catch(function (error) {
+      // handle error
+
+        console.log(error)
+      })
+  }
+
   return (
     <div>
       <SideBarMenu />
-      <Album products={products} />
+      <Album products={products} deleteProduct={deleteProduct} />
     </div>
   )
 }
